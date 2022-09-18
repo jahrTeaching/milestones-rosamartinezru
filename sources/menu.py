@@ -9,7 +9,8 @@ t = np.linspace(0,t_f, N)
 U = np.zeros((4,N+1))
 F = np.zeros(4)
 
-U[:,0] = ([1., 0., 0., 1.]) #Initial conditions
+#Initial conditions
+U[:,0] = ([1., 0., 0., 1.]) 
 
 #Explicit Euler Method
 delta_t = t[1]-t[0]
@@ -19,3 +20,6 @@ for i in range(0,N):
     drdt = U[2:,i]
     F =  np.concatenate(( drdt, - r / (np.linalg.norm(r)**3)), axis = None) 
     U[:,i+1] = U[:,i] + delta_t*F
+    
+plt.plot(U[0,:],U[1,:])
+plt.show()

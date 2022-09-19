@@ -1,5 +1,5 @@
 import numpy as np
-from sympy import solve
+from scipy.optimize import fsolve
 
 #Kepler Function
 def Kepler_F(U):
@@ -19,7 +19,12 @@ def Euler_Scheme(U, delta_t, N):
 def Inverse_Euler(U, delta_t, N):
     for i in range(0,N):
         U1 = U[:,i]
-        U[:,i+1] = np.nsolve(U2 - U1 - Kepler_F(U2)*delta_t, U2)
+        def func_I(x):
+            return [x[0] - U1[0] - x[2]*delta_t,
+                    x[1] - U1[1] - x[3]*delta_t,
+                    x[2] - U1[2] + x[0]/(np.linalg.norm(x[:-2])**3)*delta_t,
+                    x[3] - U1[3] + x[1]/(np.linalg.norm(x[:-2])**3)*delta_t]
+        U[:,i+1] = fsolve(func_I, [U[0,i], U[1,i], U[2,i], U[3,i]])
     return(U)
 
 
@@ -39,7 +44,12 @@ def Runge_Kutta_4(U, delta_t, N):
 def Crank_Nicolson(U, delta_t, N):
     for i in range(0,N):
         U1 = U[:,i]
-        U[:,i+1] = np.nsolve(U2 - U1 - (Kepler_F(U2)+ Kepler_F(U1))*delta_t/2, U2)
+        def func_CN(x):
+            return [x[0] - U1[0] - (x[2] + Kepler_F(U1)[0])*delta_t/2,
+                    x[1] - U1[1] - (x[3] + Kepler_F(U1)[1])*delta_t/2,
+                    x[2] - U1[2] - (-x[0]/(np.linalg.norm(x[:-2])**3) + Kepler_F(U1)[2])*delta_t/2,
+                    x[3] - U1[3] - (-x[1]/(np.linalg.norm(x[:-2])**3) + Kepler_F(U1)[3])*delta_t/2]
+        U[:,i+1] = fsolve(func_CN, [U[0,i], U[1,i], U[2,i], U[3,i]])
     return(U)
 
         

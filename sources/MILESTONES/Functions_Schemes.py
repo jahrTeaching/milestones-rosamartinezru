@@ -29,7 +29,7 @@ def Cauchy_Problem(F, t, U_0, Temporal_Scheme):
 
 
 #Explicit Euler Scheme
-def Euler_Scheme(U, delta_t, F, t):
+def Euler(U, delta_t, F, t):
 
     return U + delta_t*F(U,t)
     

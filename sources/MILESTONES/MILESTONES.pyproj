@@ -22,7 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MILESTONES.py" />
-    <Compile Include="FUNCTIONS_SCHEMES.py">
+    <Compile Include="Functions_Schemes.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

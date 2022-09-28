@@ -60,4 +60,19 @@ def Crank_Nicolson(U, delta_t, F, t):
             return x - U - (F(x,t) + F(U,t))*delta_t/2
 
         return fsolve(func_CN, U)
+
+    
+   #Orbital specific energy
+def Specific_energy(U,N):
+    e = array(zeros(N+1))
+
+    for i in range(0,N):
+
+        mu = 3.986e14
+        E_mec = (U[i,2]**2 + U[i,3]**2)/2
+        E_pot = mu/((U[i,0]**2 + U[i,1]**2)**(1/2))
+        e[i] = E_mec - E_pot
+
+    return e
+
         

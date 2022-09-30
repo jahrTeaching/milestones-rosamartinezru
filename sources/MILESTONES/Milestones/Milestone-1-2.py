@@ -7,9 +7,9 @@ import Temporal_Schemes as ts
 import Kepler_Problem as kp
 import Cauchy_Problem as cp
 
-N = 5000
+N = 100
 
-U_0 = array([1, 0, 0, 1])
+U_0 = array([1, 0, 0, 1]) 
 
 t = linspace(0, 50, N)
 
@@ -35,4 +35,5 @@ plt.show()
 #plt.ylabel("Energy [J/kg]")
 #plt.legend(loc = "lower right")
 #plt.show()
+
 

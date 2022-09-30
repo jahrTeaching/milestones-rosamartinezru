@@ -21,9 +21,9 @@ def newton(func, U_0):
     err = 1
 
     while err < 1e-8:
-        U = U1 - dot(inv(Jacobian(func, U)),func(U))
-        U1 = U
+        U = U1 - dot(inv(Jacobian(func, U1)),func(U1))
         err = norm(U-U1)
+        U1 = U
 
     return U
 

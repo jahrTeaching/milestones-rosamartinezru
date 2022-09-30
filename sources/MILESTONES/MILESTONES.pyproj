@@ -21,18 +21,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Cauchy_Problem.py" />
     <Compile Include="Milestones\Milestone-1-2.py" />
-    <Compile Include="Kepler_Problem.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Numerical_methods.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Temporal_Schemes.py" />
+    <Compile Include="Resources\Cauchy_Problem.py" />
+    <Compile Include="Resources\Kepler_Problem.py" />
+    <Compile Include="Resources\Numerical_methods.py" />
+    <Compile Include="Resources\Temporal_Schemes.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Milestones\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

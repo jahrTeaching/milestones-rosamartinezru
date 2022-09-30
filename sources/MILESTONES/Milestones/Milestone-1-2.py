@@ -3,7 +3,7 @@
 from numpy import array, linspace
 import matplotlib.pyplot as plt
 
-import Temporal_Schemes as ts
+import  as ts
 import Kepler_Problem as kp
 import Cauchy_Problem as cp
 

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>574eb7d2-b698-4929-b900-bab5ab93b99e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>MILESTONES.py</StartupFile>
+    <StartupFile>Milestones\Milestone-1-2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,8 +21,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Cacuhy_Problem.py" />
-    <Compile Include="MILESTONES.py" />
+    <Compile Include="Cauchy_Problem.py" />
+    <Compile Include="Milestones\Milestone-1-2.py" />
     <Compile Include="Kepler_Problem.py">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +30,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Temporal_Schemes.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Milestones\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

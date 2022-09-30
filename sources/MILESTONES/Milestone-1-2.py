@@ -3,11 +3,11 @@
 from numpy import array, linspace
 import matplotlib.pyplot as plt
 
-import  as ts
-import Kepler_Problem as kp
-import Cauchy_Problem as cp
+import Resources.Temporal_Schemes  as ts
+import Resources.Kepler_Problem as kp
+import Resources.Cauchy_Problem as cp
 
-N = 100
+N = 500
 
 U_0 = array([1, 0, 0, 1]) 
 

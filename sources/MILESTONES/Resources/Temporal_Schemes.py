@@ -1,6 +1,6 @@
 ## TEMPORAL SCHEMES
 from scipy.optimize import fsolve
-import Numerical_methods as nm
+import Resources.Numerical_methods as nm
 
 # Explicit Euler Scheme
 def Euler(U, delta_t, F, t):

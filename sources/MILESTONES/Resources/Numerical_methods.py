@@ -18,6 +18,7 @@ def newton(func, U_0):
     N = size(U_0) 
     U = array(zeros(N))
     U1 = U_0
+    err = 1
 
     while err < 1e-8:
         U = U1 - dot(inv(Jacobian(func, U)),func(U))

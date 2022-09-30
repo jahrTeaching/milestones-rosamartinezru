@@ -1,4 +1,5 @@
 # CAUCHY PROBLEM
+from numpy import array, zeros
 
 def Cauchy_Problem(F, t, U_0, Temporal_Scheme):
 

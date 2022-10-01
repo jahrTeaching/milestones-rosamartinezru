@@ -33,5 +33,5 @@ def Crank_Nicolson(U, delta_t, F, t):
         def func_CN(x):
             return x - U - (F(x,t) + F(U,t))*delta_t/2
 
-        return fsolve(func_CN, U)
+        return newton(func_CN, U)
 

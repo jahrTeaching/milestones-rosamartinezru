@@ -21,13 +21,13 @@ def newton(func, U_0):
 	U1 = U_0
 	error = 1
 	stop = 1e-8
+	iteration = 0
 
-	while error >= stop :
+	while error > stop and iteration < 1000:
 		U = U1 - dot(inv(Jacobian(func, U1)),func(U1))
 		error = norm(U - U1)
-		print(error)
 		U1 = U
-
+		iteration = iteration +1
 	return U
 
 

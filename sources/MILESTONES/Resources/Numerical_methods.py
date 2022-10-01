@@ -9,8 +9,9 @@ def Jacobian(F, U):
     err = 1.e-3
 
     for i in range(N):
-        J[:,i] = (F(U + err) - F(U - err))/(2*err)
-
+        xj = array(zeros(N))
+        xj[i] = err
+        J[:,i] = (F(U + xj) - F(U - xj))/(2*err)
     return J  
 
 

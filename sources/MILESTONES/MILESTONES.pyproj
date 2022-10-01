@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>574eb7d2-b698-4929-b900-bab5ab93b99e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Resources\Temporal_Schemes.py</StartupFile>
+    <StartupFile>Milestone-1-2.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

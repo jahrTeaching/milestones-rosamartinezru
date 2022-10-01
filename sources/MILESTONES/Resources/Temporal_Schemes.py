@@ -1,5 +1,5 @@
 ## TEMPORAL SCHEMES
-import Numerical_methods as nm
+from Resources.Numerical_methods import newton
 from scipy.optimize import fsolve
 
 

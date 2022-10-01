@@ -4,28 +4,30 @@ from numpy import size, array, zeros, dot
 from numpy.linalg import inv, norm
 
 def Jacobian(F, U):
-    N = size(U)
-    J= array(zeros([N,N]))
-    err = 1.e-3
+	N = size(U)
+	J= array(zeros([N,N]))
+	t = 1e-3
 
-    for i in range(N):
-        xj = array(zeros(N))
-        xj[i] = err
-        J[:,i] = (F(U + xj) - F(U - xj))/(2*err)
-    return J  
+	for i in range(N):
+		xj = array(zeros(N))
+		xj[i] = t
+		J[:,i] = (F(U + xj) - F(U - xj))/(2*t)
+	return J  
 
 
 def newton(func, U_0):
-    N = size(U_0) 
-    U = array(zeros(N))
-    U1 = U_0
-    err = 1
+	N = size(U_0) 
+	U = array(zeros(N))
+	U1 = U_0
+	error = 1
+	stop = 1e-8
 
-    while err < 1e-8:
-        U = U1 - dot(inv(Jacobian(func, U1)),func(U1))
-        err = norm(U-U1)
-        U1 = U
+	while error >= stop :
+		U = U1 - dot(inv(Jacobian(func, U1)),func(U1))
+		error = norm(U - U1)
+		print(error)
+		U1 = U
 
-    return U
+	return U
 
 

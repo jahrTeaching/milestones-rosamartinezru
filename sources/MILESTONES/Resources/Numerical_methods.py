@@ -1,4 +1,4 @@
-# NEWTON-RAPHSON ALGORITHM : find roots of a real fucntion
+# NEWTON-RAPHSON ALGORITHM : find roots of a real function
 
 from numpy import size, array, zeros, dot
 from numpy.linalg import inv, norm

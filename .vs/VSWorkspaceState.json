@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\sources",
+    "\\sources\\MILESTONES",
+    "\\sources\\MILESTONES\\Resources"
   ],
-  "SelectedNode": "\\MUSE_22_23_AMPLI_MATES.sln",
+  "SelectedNode": "\\sources\\MILESTONES\\Resources\\Temporal_Schemes.py",
   "PreviewInSolutionExplorer": false
 }

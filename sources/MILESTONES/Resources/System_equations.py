@@ -1,23 +1,14 @@
 # NEWTON-RAPHSON ALGORITHM : find roots of a real function
 
-from numpy import size, array, zeros, dot
+from numpy import size, zeros, dot
 from numpy.linalg import inv, norm
+from Resources.Algebra import Jacobian
 
-def Jacobian(F, U):
-	N = size(U)
-	J= zeros([N,N])
-	t = 1e-3
-
-	for i in range(N):
-		xj = array(zeros(N))
-		xj[i] = t
-		J[:,i] = (F(U + xj) - F(U - xj))/(2*t)
-	return J  
 
 
 def newton(func, U_0):
 	N = size(U_0) 
-	U = array(zeros(N))
+	U = zeros(N)
 	U1 = U_0
 	error = 1
 	stop = 1e-8

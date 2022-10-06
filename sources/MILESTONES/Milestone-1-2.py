@@ -7,13 +7,13 @@ import Resources.Temporal_Schemes  as ts
 import Resources.Kepler_Problem as kp
 import Resources.Cauchy_Problem as cp
 
-N = 5000
+N = 50000
 
 U_0 = array([1, 0, 0, 1]) 
 
 t = linspace(0, 50, N)
 
-U = cp.Cauchy_Problem( kp.Kepler_F, t, U_0, ts.Crank_Nicolson)
+U = cp.Cauchy_Problem( kp.Kepler_F, t, U_0, ts.Inverse_Euler)
 
 plt.plot(U[:,0], U[:,1])
 plt.title("Kepler Orbit with dt = 0.001, Crank Nicolson Temporal Scheme")

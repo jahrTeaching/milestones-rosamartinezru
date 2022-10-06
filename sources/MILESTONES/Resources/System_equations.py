@@ -1,9 +1,44 @@
 # NEWTON-RAPHSON ALGORITHM : find roots of a real function
 
-from numpy import size, zeros, dot
+from numpy import size, zeros, dot, array
 from numpy.linalg import inv, norm
-from Resources.Algebra import Jacobian
+from Resources.Algebra import Jacobian, factorization_LU
 
+
+def solve_LU(M,b):
+
+	N=size(b)
+	y=zeros(N)
+	x=zeros(N)
+
+	[A,L,U] = factorization_LU(M)
+	y[0] = b[0]
+
+	for i in range(0,N):
+		y[i] = b[i] - dot(A[i,0:i], y[0:i])
+		
+
+	x[N-1] = y[N-1]/A[N-1,N-1]
+
+	for i in range(N-2,-1,-1):
+		x[i] = (y[i] - dot(A[i, i+1:N+1], x[i+1:N+1])) / A[i,i]
+		
+	return x
+
+
+def Inverse(A):
+
+	N = size(A,1)
+
+	B = zeros([N,N])
+
+	for i in range(0,N):
+		one = zeros(N)
+		one[i] = 1
+
+		B[:,i] = solve_LU(A, one)
+
+	return B
 
 
 def newton(func, U_0):
@@ -15,10 +50,9 @@ def newton(func, U_0):
 	iteration = 0
 
 	while error > stop and iteration < 1000:
-		U = U1 - dot(inv(Jacobian(func, U1)),func(U1))
+		U = U1 - dot(Inverse(Jacobian(func, U1)),func(U1))
 		error = norm(U - U1)
 		U1 = U
 		iteration = iteration +1
 	return U
-
 

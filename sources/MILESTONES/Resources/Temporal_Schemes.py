@@ -1,6 +1,6 @@
 ## TEMPORAL SCHEMES
-#from Resources.Numerical_methods import newton
-from scipy.optimize import newton
+from Resources.System_equations import newton
+#from scipy.optimize import newton
 
 
 # Explicit Euler Scheme

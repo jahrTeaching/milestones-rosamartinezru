@@ -7,7 +7,7 @@ import Resources.Temporal_Schemes  as ts
 import Resources.Kepler_Problem as kp
 import Resources.Cauchy_Problem as cp
 
-N = 50000
+N = 5000
 
 U_0 = array([1, 0, 0, 1]) 
 

@@ -5,7 +5,7 @@ from numpy.linalg import inv, norm
 
 def Jacobian(F, U):
 	N = size(U)
-	J= array(zeros([N,N]))
+	J= zeros([N,N])
 	t = 1e-3
 
 	for i in range(N):

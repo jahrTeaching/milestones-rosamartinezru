@@ -1,5 +1,8 @@
+
+from numpy import array, zeros, size, linspace, log10
+from numpy.linalg import norm
+
 # CAUCHY PROBLEM
-from numpy import array, zeros
 
 def Cauchy_Problem(F, t, U_0, Temporal_Scheme):
 
@@ -15,6 +18,77 @@ def Cauchy_Problem(F, t, U_0, Temporal_Scheme):
         U[i+1, :] = Temporal_Scheme(U[i, :], delta_t, F, t[i])
 
     return U
+
+# RICHARDSON ERROR
+
+def Error_Cauchy(F, t, U_0, Temporal_Scheme):
+
+    N = size(t)
+    E = zeros([N,size(U_0)])
+
+    t1 = t
+    t2 = linspace(0, t[N-1], N*2)
+
+    U2N = Cauchy_Problem(F, t2, U_0, Temporal_Scheme)
+    U1N = Cauchy_Problem(F, t1, U_0, Temporal_Scheme)
+
+    if Temporal_Scheme == 'Euler':
+        order=1
+
+    elif Temporal_Scheme == 'Inverse Euler':
+        order=1
+
+    elif Temporal_Scheme == 'Crank_Nicolson':
+        order=2
+        
+    else:
+        order=4
+
+    for i in range(0,N):
+        E[i,:] = (U2N[2*i,:] - U1N[i,:]) / (1 - 1 / (2**order))
+
+    return E
+
+# TEMPORAL CONVERGENCE
+
+def Convergence_rate(F, t, U_0, Temporal_Scheme):
+
+    N = size(t)
+
+    t1 = t
+    tf = t1[N-1]
+    U1 = Cauchy_Problem(F, t1, U_0, Temporal_Scheme)
+
+    k = 20
+
+    log_E = zeros(k)
+    log_N = zeros(k)
+
+    for i in range(0,k):
+
+        N = 2*N
+        t2 = linspace(0, tf, N)
+
+        U2 = Cauchy_Problem(F, t2, U_0, Temporal_Scheme)
+
+        E = norm((U2[N-1,:] - U1[int(N/2-1),:]))
+
+        log_E[i] = log10(E)
+        log_N[i] = log10(N)
+
+        t1 = t2
+        U1 = U2
+    
+
+    return [log_N, log_E]
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 ## TEMPORAL SCHEMES
 from Resources.System_equations import newton
-#from scipy.optimize import newton
+from scipy.optimize import newton, fsolve
 
 
 # Explicit Euler Scheme
@@ -14,7 +14,7 @@ def Inverse_Euler(U, delta_t, F, t):
     def func_I(x):
         return x - U - F(x,t)*delta_t
 
-    return newton(func_I, U)
+    return fsolve(func_I, U)
 
 
 # Runge-Kutta-4 Scheme
@@ -33,5 +33,5 @@ def Crank_Nicolson(U, delta_t, F, t):
         def func_CN(x):
             return x - U - (F(x,t) + F(U,t))*delta_t/2
 
-        return newton(func_CN, U)
+        return fsolve(func_CN, U)
 

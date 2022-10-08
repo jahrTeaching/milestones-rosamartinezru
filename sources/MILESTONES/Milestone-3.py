@@ -25,7 +25,14 @@ t = linspace(0, 50, N)
 #plt.legend(loc = "lower left")
 #plt.show()
 
-[log_N, log_E] = cp.Convergence_rate(kp.Kepler_F, t, U_0, ts.Euler)
+[log_N1, log_E1, order, N_lineal, E_lineal] = cp.Convergence_rate(kp.Kepler_F, t, U_0, ts.Euler)
 
-plt.plot(log_N, log_E)
+
+plt.plot(log_N1, log_E1, color = "r", label = "Euler")
+plt.plot(N_lineal, E_lineal, "--", color = "b", label = "Linear Regression")
+plt.title("Convergence rate for Euler, order =" +str(order))
+plt.xlabel("log(N)")
+plt.ylabel("log(|U2-U1|)")
+plt.legend(loc = "lower left")
+plt.grid()
 plt.show()

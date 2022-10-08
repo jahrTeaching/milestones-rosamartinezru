@@ -1,6 +1,7 @@
 
-from numpy import array, zeros, size, linspace, log10
+from numpy import array, zeros, size, linspace, log10, round_
 from numpy.linalg import norm
+from sklearn.linear_model import LinearRegression
 
 # CAUCHY PROBLEM
 
@@ -59,7 +60,7 @@ def Convergence_rate(F, t, U_0, Temporal_Scheme):
     tf = t1[N-1]
     U1 = Cauchy_Problem(F, t1, U_0, Temporal_Scheme)
 
-    k = 20
+    k = 15
 
     log_E = zeros(k)
     log_N = zeros(k)
@@ -71,16 +72,25 @@ def Convergence_rate(F, t, U_0, Temporal_Scheme):
 
         U2 = Cauchy_Problem(F, t2, U_0, Temporal_Scheme)
 
-        E = norm((U2[N-1,:] - U1[int(N/2-1),:]))
+        E = norm((U2[int(N-1),:] - U1[int(N/2-1),:]))
 
         log_E[i] = log10(E)
         log_N[i] = log10(N)
 
         t1 = t2
         U1 = U2
-    
 
-    return [log_N, log_E]
+    for j in range(0,k):
+         if (abs(log_E[j]) > 12):
+             break
+    j = min(j, k)
+    reg = LinearRegression().fit(log_N[0:j+1].reshape((-1, 1)),log_E[0:j+1])
+    order = round_(abs(reg.coef_),1)
+
+    log_N_lineal = log_N[0:j+1]
+    log_E_lineal = reg.predict(log_N[0:j+1].reshape((-1, 1)))
+
+    return [log_N, log_E, order, log_N_lineal, log_E_lineal]
 
 
 

@@ -22,7 +22,7 @@ def Cauchy_Problem(F, t, U_0, Temporal_Scheme):
 
 # RICHARDSON ERROR
 
-def Error_Cauchy(F, t, U_0, Temporal_Scheme):
+def Error_Cauchy(F, t, U_0, Temporal_Scheme, order):
 
     N = size(t)
     E = zeros([N,size(U_0)])
@@ -32,18 +32,6 @@ def Error_Cauchy(F, t, U_0, Temporal_Scheme):
 
     U2N = Cauchy_Problem(F, t2, U_0, Temporal_Scheme)
     U1N = Cauchy_Problem(F, t1, U_0, Temporal_Scheme)
-
-    if Temporal_Scheme == 'Euler':
-        order=1
-
-    elif Temporal_Scheme == 'Inverse Euler':
-        order=1
-
-    elif Temporal_Scheme == 'Crank_Nicolson':
-        order=2
-        
-    else:
-        order=4
 
     for i in range(0,N):
         E[i,:] = (U2N[2*i,:] - U1N[i,:]) / (1 - 1 / (2**order))

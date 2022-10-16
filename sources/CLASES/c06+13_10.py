@@ -1,4 +1,4 @@
-from numpy import array # No importar de Math porque no es vectorial
+from numpy import array, product # No importar de Math porque no es vectorial
 
 # EJEMPLO DE FUNCIÓN IMPURA
 
@@ -76,6 +76,50 @@ v = array([1, 2, 3])
 
 w = array(list(map(f,v))) #Map mapea f para todo v, tiene que crear una lista y luego un array, un poco rollo :(
 print(w)
+
+# EJEMPLO DE FILTRADO
+
+y = array([1,2,3,4,5])
+y1 = y[y<=3] # Coge los elementos menores o iguales a 3, muy compacto
+
+def f(x):
+    return x<=3
+
+y1 = array(list(filter(f,y))) # Filter devuelve un objeto que hay que pasar a un array (primero a una lista), demasiado largo
+
+# EJEMPLO REDUCE
+
+y = array([1,2,3,4])
+print(product(y)) # sum, product, norm, all, any, max, find ..... 
+
+###########################################################################################################
+
+# OVERLOADING - SOBRECARGA
+
+# Sobrecarga de operadores
+class dual_number: # Una clase tiene un constructor y las funciones u operaciones
+
+    def __init__(self, x, y): # El constructor
+        self.x = x
+        self.i = y
+
+    def __add__(self, z):
+        
+        return dual_number(self.x + z.x, self.y + z.y)
+
+z1 = dual_number(1,1) #Se instancia un elemento de la clase
+z2 = dual_number(2,2)
+
+z3 = z1 + z2 #Sintactic sugar, escribir las cosas de manera "amigable"
+
+# Sobrecargar el problema de Cauchy con variable compleja, se usa en la región de estabilidad, U vector columna de complejos
+
+
+
+
+
+
+
 
 
 

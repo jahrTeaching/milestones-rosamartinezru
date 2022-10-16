@@ -48,7 +48,7 @@ def Convergence_rate(F, t, U_0, Temporal_Scheme):
     tf = t1[N-1]
     U1 = Cauchy_Problem(F, t1, U_0, Temporal_Scheme)
 
-    k = 15
+    k = 20
 
     log_E = zeros(k)
     log_N = zeros(k)
@@ -68,6 +68,13 @@ def Convergence_rate(F, t, U_0, Temporal_Scheme):
         t1 = t2
         U1 = U2
 
+    return [log_N, log_E]
+
+def lineal_Convergence_rate(log_E, log_N):
+
+    k = size(log_E)
+
+
     for j in range(0,k):
          if (abs(log_E[j]) > 12):
              break
@@ -77,8 +84,11 @@ def Convergence_rate(F, t, U_0, Temporal_Scheme):
 
     log_N_lineal = log_N[0:j+1]
     log_E_lineal = reg.predict(log_N[0:j+1].reshape((-1, 1)))
+    
 
-    return [log_N, log_E, order, log_N_lineal, log_E_lineal]
+    log_E_total = log_E - log10(1 - 1 / (2**order))
+
+    return [log_N_lineal, log_E_lineal, order, log_E_total]
 
 
 

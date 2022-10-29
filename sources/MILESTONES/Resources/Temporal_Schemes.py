@@ -1,7 +1,8 @@
 ## TEMPORAL SCHEMES
 from Resources.System_equations import newton
+from Resources.Cauchy_Problem import Cauchy_Problem
 #from scipy.optimize import newton, fsolve
-
+from numpy import size, linspace
 
 # Explicit Euler Scheme
 def Euler(U, delta_t, F, t):
@@ -35,3 +36,8 @@ def Crank_Nicolson(U, delta_t, F, t):
 
         return newton(func_CN, U)
 
+
+#Leap-frog Scheme
+def Leap_Frog(U2, U1, delta_t, F, t):
+
+    return U1 + 2*delta_t*F(U2,t)

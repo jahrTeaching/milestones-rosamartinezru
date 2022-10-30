@@ -9,28 +9,28 @@ import Resources.Kepler_Problem as kp
 import Resources.Cauchy_Problem as cp
 from Resources.Harmonic_Oscillator import F_oscillator 
 
-N = 100
+N = 50000
 
-U_0 = array([1, 0]) 
+U_0 = array([1, 0, 0, 1]) 
 
-t = linspace(0, 10, N)
+t = linspace(0, 50, N)
 
-#error = cp.Error_Cauchy(F_oscillator, t, U_0, ts.Leap_Frog, 2)
-#module = zeros(size(error[:,0]))
-#for i in range(0,size(error[:,0])):
-#    module[i] = (error[i,0]**2 + error[i,1]**2)**(1/2)
+error = cp.Error_Cauchy(kp.Kepler_F, t, U_0, ts.Leap_Frog, 2)
+module = zeros(size(error[:,0]))
+for i in range(0,size(error[:,0])):
+    module[i] = (error[i,0]**2 + error[i,1]**2)**(1/2)
 
-#plt.plot(t, error[:,0],"r", label = "X position")
-#plt.plot(t, error[:,1],"b", label = "Y position")
-#plt.plot(t, module, "g", label = "Error module")
-#plt.title("Numerical error, Leap-Frog TS, dt = 0.01")
-#plt.xlabel("t")
-#plt.ylabel("Error")
-#plt.legend(loc = "lower left")
-#plt.grid()
-#plt.show()
+plt.plot(t, error[:,0], 'o', color =  "red", label = "X position")
+plt.plot(t, error[:,1], 'o', color = "blue", label = "Y position")
+plt.plot(t, module,  'o',color =  "green", label = "Error module")
+plt.title("Numerical error, Leap-Frog TS, dt = 0.01")
+plt.xlabel("t")
+plt.ylabel("Error")
+plt.legend(loc = "lower left")
+plt.grid()
+plt.show()
 
-#plt.plot(t, error[:,0],"r", label = "X position")
+#plt.plot(t, error[:,0],"r", 'o',  label = "X position")
 #plt.title("Numerical error, Leap-Frog TS, dt = 0.01")
 #plt.xlabel("t")
 #plt.ylabel("Error")
@@ -71,8 +71,8 @@ t = linspace(0, 10, N)
 #plt.show()
 
 
-[log_N1, log_E1] = cp.Convergence_rate(F_oscillator, t, U_0, ts.Leap_Frog)
-[N_lineal, E_lineal, order, log_E_total] = cp.lineal_Convergence_rate(log_E1, log_N1)
+#[log_N1, log_E1] = cp.Convergence_rate(F_oscillator, t, U_0, ts.Leap_Frog)
+#[N_lineal, E_lineal, order, log_E_total] = cp.lineal_Convergence_rate(log_E1, log_N1)
 
 #plt.plot(log_N1, log_E1, color = "r", label = "log(|U2-U1|)")
 #plt.plot(log_N1,log_E_total, color = "g", label = "log(|E|)")
@@ -82,11 +82,11 @@ t = linspace(0, 10, N)
 #plt.grid()
 #plt.show()
 
-plt.plot(log_N1, log_E1, color = "r", label = "Leap-Frog")
-plt.plot(N_lineal, E_lineal, "--", color = "b", label = "Linear Regression")
-plt.title("Convergence rate for Leap Frog, order =" +str(order))
-plt.xlabel("log(N)")
-plt.ylabel("log(|U2-U1|)")
-plt.legend(loc = "lower left")
-plt.grid()
-plt.show()
+#plt.plot(log_N1, log_E1, color = "r", label = "Leap-Frog")
+#plt.plot(N_lineal, E_lineal, "--", color = "b", label = "Linear Regression")
+#plt.title("Convergence rate for Leap Frog, order =" +str(order))
+#plt.xlabel("log(N)")
+#plt.ylabel("log(|U2-U1|)")
+#plt.legend(loc = "lower left")
+#plt.grid()
+#plt.show()

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import Resources.Stability_Regions as sr
 
 from Resources.Cauchy_Problem import Cauchy_Problem
-from Resources.Harmonic_Oscillator import F_oscillator 
+from Resources.ODE_problems.Harmonic_Oscillator import F_oscillator 
 
 from numpy import array, linspace, cos, sin 
 

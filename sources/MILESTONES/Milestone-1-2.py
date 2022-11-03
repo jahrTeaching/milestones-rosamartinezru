@@ -4,7 +4,7 @@ from numpy import array, linspace
 import matplotlib.pyplot as plt
 
 import Resources.Temporal_Schemes  as ts
-import Resources.Kepler_Problem as kp
+import Resources.ODE_problems.Kepler_Problem as kp
 import Resources.Cauchy_Problem as cp
 
 N = 50000

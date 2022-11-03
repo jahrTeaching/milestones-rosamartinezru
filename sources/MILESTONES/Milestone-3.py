@@ -5,9 +5,9 @@ from numpy.linalg import norm
 import matplotlib.pyplot as plt
 
 import Resources.Temporal_Schemes  as ts
-import Resources.Kepler_Problem as kp
+import Resources.ODE_problems.Kepler_Problem as kp
 import Resources.Cauchy_Problem as cp
-from Resources.Harmonic_Oscillator import F_oscillator 
+from Resources.ODE_problems.Harmonic_Oscillator import F_oscillator 
 
 N = 50000
 

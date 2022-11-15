@@ -1,6 +1,6 @@
 # NEWTON-RAPHSON ALGORITHM : find roots of a real function
 
-from numpy import size, zeros, matmul, array
+from numpy import size, zeros, matmul, array, dot
 from numpy.linalg import inv, norm
 from Resources.Algebra import Jacobian, factorization_LU
 from numpy import float64
@@ -51,7 +51,7 @@ def newton(func, U_0):
 	iteration = 0
 
 	while error > stop and iteration < 1000:
-		U = U1 - matmul(Inverse(Jacobian(func, U1)),array([func(U1)]))
+		U = U1 - dot(Inverse(Jacobian(func, U1)),func(U1))
 		error = norm(U - U1)
 		U1 = U
 		iteration = iteration +1

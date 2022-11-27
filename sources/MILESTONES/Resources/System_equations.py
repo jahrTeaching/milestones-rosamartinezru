@@ -9,10 +9,10 @@ from numpy import float64
 def solve_LU(M,b):
 
 	N=size(b)
-	y=zeros(N, dtype = type(M))
-	x=zeros(N, dtype = type(M))
+	y=zeros(N)
+	x=zeros(N)
 
-	[A,L,U] = factorization_LU(M)
+	A,L,U = factorization_LU(M)
 	y[0] = b[0]
 
 	for i in range(0,N):
@@ -31,7 +31,7 @@ def Inverse(A):
 
 	N = size(A,1)
 
-	B = zeros([N,N], dtype = type(A))
+	B = zeros([N,N])
 
 	for i in range(0,N):
 		one = zeros(N)
@@ -44,7 +44,7 @@ def Inverse(A):
 
 def newton(func, U_0):
 	N = size(U_0) 
-	U = zeros(N, dtype = type(U_0))
+	U = zeros(N)
 	U1 = U_0
 	error = 1
 	stop = 1e-8

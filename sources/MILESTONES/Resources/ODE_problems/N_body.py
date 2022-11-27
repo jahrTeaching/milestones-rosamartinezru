@@ -3,7 +3,7 @@ from numpy.linalg import norm
 
 
 def F_N_body(U,t):
-    (Nb, Nc) = (5, 3) # N_bodies, N_coordinates
+    (Nb, Nc) = (3, 3) # N_bodies, N_coordinates
     Us = reshape(U, (Nb, Nc, 2)) # Position and velocity
 
     r = reshape(Us[:, :, 0], (Nb, Nc)) # Position

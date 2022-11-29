@@ -7,7 +7,7 @@ from numpy import zeros, size, array, matmul
 def Jacobian(F, U):
 	N = size(U)
 	J= zeros([N,N])
-	t = 1e-3
+	t = 1e-10
 
 	for i in range(N):
 		xj = zeros(N)

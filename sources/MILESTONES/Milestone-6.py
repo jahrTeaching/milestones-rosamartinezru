@@ -1,23 +1,25 @@
+
 # LAGRANGE POINTS AND THEIR STABILITY
-import Resources.Temporal_Schemes  as ts
-import Resources.Embedded_RK  as eRK
-import matplotlib.pyplot as plt
-import Resources.Stability_Regions as sr
-import Resources.ODE_problems.Body3_Restricted as br
 
-from Resources.Cauchy_Problem import Cauchy_Problem
+import Temporal_Schemes.Simple_TS as ts
+import Temporal_Schemes.Adaptative_Stepsize  as eRK
+import ODE_problems.Body3_Restricted as br
+from Cauchy_Problem.Cauchy_Problem import Cauchy_Problem
 
-from numpy import array, linspace, zeros
+from numpy import array, linspace, zeros, around
 from random import random
+
+import matplotlib.pyplot as plt
 
 # CR3BP SOLUTION
 
-N = 10000
+N = 20000
 
-t = linspace(0, 1000, N)
+t = linspace(0, 100, N)
 
-mu = 3.0039e-7 #Earth-Sun
-#mu = 1.2151e-2 #Earth-Moon
+#mu = 3.0039e-7 #Earth-Sun
+mu = 1.2151e-2 #Earth-Moon
+
 
 def F(U,t):
 
@@ -39,14 +41,25 @@ x_p = br.Lagrange_points(U_0L, NL, mu)
 
 # ORBITS AROUND LAGRANGE POINTS
 U_0LP = zeros(4)
+U_0SLP = zeros(4)
 
-eps = 1e-2*random()
-sel_LG = 5
+eps = 1e-3*random()
+sel_LG = 1
 
 U_0LP[0:2] = x_p[sel_LG-1,:] + eps
 U_0LP[2:4] = eps
 
-U_LP = Cauchy_Problem(F, t, U_0LP, ts.Inverse_Euler)
+U_0SLP[0:2] = x_p[sel_LG-1,:] 
+U_0SLP[2:4] = 0
+
+# STABILITY OF LAGRANGE POINTS
+
+U_LP = Cauchy_Problem(F, t, U_0LP, eRK.Embedded_RK)
+
+eingvalues = br.Stability_LP(U_0SLP, mu)
+print(around(eingvalues.real,8))
+
+# PAINT THE ORBIT
 
 fig, (ax1, ax2) = plt.subplots(1, 2)
 ax1.plot(U_LP[:,0], U_LP[:,1],'-',color = "r")

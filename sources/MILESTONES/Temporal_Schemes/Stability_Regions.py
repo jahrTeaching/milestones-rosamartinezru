@@ -1,5 +1,5 @@
-from Resources.Temporal_Schemes  import *
-from Resources.System_equations import newton
+from Temporal_Schemes.Simple_TS  import *
+from System_equations.System_equations import newton
 from numpy import zeros, size, float64, sqrt
 
 ## Absolute Stability Region

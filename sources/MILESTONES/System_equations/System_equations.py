@@ -2,7 +2,7 @@
 
 from numpy import size, zeros, matmul, array, dot
 from numpy.linalg import inv, norm
-from Resources.Algebra import Jacobian, factorization_LU
+from System_equations.Algebra import Jacobian, factorization_LU
 from numpy import float64
 
 
@@ -47,10 +47,10 @@ def newton(func, U_0):
 	U = zeros(N)
 	U1 = U_0
 	error = 1
-	stop = 1e-8
+	stop = 1e-10
 	iteration = 0
 
-	while error > stop and iteration < 1000:
+	while error > stop and iteration < 10000:
 		U = U1 - dot(Inverse(Jacobian(func, U1)),func(U1))
 		error = norm(U - U1)
 		U1 = U

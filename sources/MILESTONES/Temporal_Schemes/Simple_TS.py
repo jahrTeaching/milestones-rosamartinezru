@@ -1,6 +1,6 @@
 ## TEMPORAL SCHEMES
-from Resources.System_equations import newton
-from Resources.Cauchy_Problem import Cauchy_Problem
+from System_equations.System_equations import newton
+from Cauchy_Problem.Cauchy_Problem import Cauchy_Problem
 #from scipy.optimize import newton, fsolve
 from numpy import size, linspace
 

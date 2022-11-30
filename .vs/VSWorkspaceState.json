@@ -4,9 +4,9 @@
     "\\sources",
     "\\sources\\CLASES",
     "\\sources\\MILESTONES",
-    "\\sources\\MILESTONES\\Resources",
-    "\\sources\\MILESTONES\\Resources\\ODE_problems"
+    "\\sources\\MILESTONES\\ODE_problems",
+    "\\sources\\MILESTONES\\Temporal_Schemes"
   ],
-  "SelectedNode": "\\sources\\MILESTONES\\Resources\\Algebra.py",
+  "SelectedNode": "\\sources\\MILESTONES\\Temporal_Schemes\\Adaptative_Stepsize.py",
   "PreviewInSolutionExplorer": false
 }

@@ -13,12 +13,12 @@ import matplotlib.pyplot as plt
 
 # CR3BP SOLUTION
 
-N = 20000
+N = int(1e8)
 
-t = linspace(0, 100, N)
+t = linspace(0, 10, N)
 
-#mu = 3.0039e-7 #Earth-Sun
-mu = 1.2151e-2 #Earth-Moon
+mu = 3.0039e-7 #Earth-Sun
+#mu = 1.2151e-2 #Earth-Moon
 
 
 def F(U,t):
@@ -38,13 +38,13 @@ U_0L[4,:] = array([1.01, 0, 0, 0])
 
 
 x_p = br.Lagrange_points(U_0L, NL, mu)
-
+print(x_p)
 # ORBITS AROUND LAGRANGE POINTS
 U_0LP = zeros(4)
 U_0SLP = zeros(4)
 
 eps = 1e-3*random()
-sel_LG = 1
+sel_LG = 3
 
 U_0LP[0:2] = x_p[sel_LG-1,:] + eps
 U_0LP[2:4] = eps
@@ -54,7 +54,7 @@ U_0SLP[2:4] = 0
 
 # STABILITY OF LAGRANGE POINTS
 
-U_LP = Cauchy_Problem(F, t, U_0LP, eRK.Embedded_RK)
+U_LP = Cauchy_Problem(F, t, U_0LP, ts.Runge_Kutta_4)
 
 eingvalues = br.Stability_LP(U_0SLP, mu)
 print(around(eingvalues.real,8))
@@ -77,7 +77,7 @@ ax1.set_title("Orbital system view")
 ax2.set_title("Lagrange point view")
 ax2.set_xlim(x_p[sel_LG-1,0]-0.5,x_p[sel_LG-1,0]+0.5)
 ax2.set_ylim(x_p[sel_LG-1,1]-0.5,x_p[sel_LG-1,1]+0.5)
-fig.suptitle("Earth-Sun - CR3BP (Inverse Euler TS) - Orbit around the L2 point with t = " + str(t[N-1]))
+fig.suptitle("Earth-Sun - CR3BP (Runge-Kutta-4 TS) - Orbit around the L4 point with t = " + str(t[N-1]))
 for ax in fig.get_axes():
     ax.set(xlabel='x', ylabel='y')
     ax.grid()
